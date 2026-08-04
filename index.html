@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>TO DO</title>
-    <link rel = "stylesheet" href="style.css">
 </head>
 <body>
     <div id="mydiv" class="header">
@@ -25,5 +25,45 @@
     
     </ul>
       <script src="script.js"></script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple, modern daily to-do list.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>My Day — To Do List</title>
+</head>
+<body>
+
+    <main class="app">
+        <div id="mydiv" class="header">
+            <h2>My To Do List</h2>
+            <p class="subtitle" id="progressText">0 of 0 done</p>
+
+            <div class="input-row">
+                <input type="text" id="myInput" placeholder="Add a task...">
+                <span onclick="newElement()" class="addbutton">ADD</span>
+            </div>
+        </div>
+
+        <ul id="myUL">
+            <li>Read Quran</li>
+            <li class="checked">Coding</li>
+            <li>Read PDFs</li>
+            <li>Breakfast</li>
+            <li>Learn</li>
+            <li>Take nap</li>
+            <li>Web Dev</li>
+            <li>lunch</li>
+        </ul>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
