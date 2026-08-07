@@ -1,69 +1,64 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>TO DO</title>
-</head>
-<body>
-    <div id="mydiv" class="header">
-          <h2> My to do list </h2>
-            <input type="text" id="myInput" placeholder="Title...........">
-            <span onclick="newElement()" class= "addbutton">ADD</span>
-    </div>   
-
-    <ul id="myUL">
-        <li>Read Quran</li>
-        <li class="checked"> Coding</li> 
-        <li>Read PDFs</li>
-        <li>Breakfast</li>
-        <li>Learn</li>
-        <li>Take nap</li>
-        <li>Web Dev</li>
-        <li>lunch</li>
-    
-    </ul>
-      <script src="script.js"></script>
-</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A simple, modern daily to-do list.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>My Day — To Do List</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>daily-routine.js — To-Do</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <main class="app">
-        <div id="mydiv" class="header">
-            <h2>My To Do List</h2>
-            <p class="subtitle" id="progressText">0 of 0 done</p>
+  <main class="editor" aria-label="Daily routine to-do list">
 
-            <div class="input-row">
-                <input type="text" id="myInput" placeholder="Add a task...">
-                <span onclick="newElement()" class="addbutton">ADD</span>
-            </div>
-        </div>
+    <!-- Titlebar -->
+    <div class="titlebar">
+      <div class="dots" aria-hidden="true">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-amber"></span>
+        <span class="dot dot-green"></span>
+      </div>
+      <span class="tab">daily-routine.js</span>
+    </div>
 
-        <ul id="myUL">
-            <li>Read Quran</li>
-            <li class="checked">Coding</li>
-            <li>Read PDFs</li>
-            <li>Breakfast</li>
-            <li>Learn</li>
-            <li>Take nap</li>
-            <li>Web Dev</li>
-            <li>lunch</li>
-        </ul>
-    </main>
+    <!-- Prompt / input row -->
+    <div class="input-row">
+      <span class="prompt" aria-hidden="true">&gt;</span>
+      <input
+        type="text"
+        id="myInput"
+        class="task-input"
+        placeholder="Add a task and press Enter..."
+        aria-label="New task"
+        autocomplete="off"
+      >
+      <button type="button" id="addBtn" class="add-btn">
+        Add <span class="key">&#9166;</span>
+      </button>
+    </div>
 
-    <script src="script.js"></script>
+    <!-- Task list -->
+    <ul id="myUL" class="code-lines">
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">Read Quran</span></li>
+      <li class="checked"><span class="mark" role="checkbox" aria-checked="true" tabindex="0"></span><span class="task-text">Coding</span></li>
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">Read PDFs</span></li>
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">Breakfast</span></li>
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">Learn</span></li>
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">Take nap</span></li>
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">Web Dev</span></li>
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">lunch</span></li>
+    </ul>
+
+    <!-- Status bar -->
+    <div class="statusbar">
+      <span id="statusCount">8 tasks · 1 done</span>
+      <span class="statusbar-right">JavaScript · UTF-8</span>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
