@@ -1,0 +1,18 @@
+/* ===== Design tokens ===== */
+:root {
+  --bg-page:    #0a0d12;
+  --bg:         #0f1419;
+  --bg-panel:   #141a21;
+  --bg-line-hover: #171f28;
+  --border:     #232b35;
+
+  --text:       #d4d7dc;
+  --text-dim:   #5b6472;
+
+  --accent-blue:  #5fb3f0;
+  --accent-amber: #e8a33d;
+  --accent-green: #6fcf97;
+  --accent-red:   #e2555a;
+
+  --radius: 10px;
+}
