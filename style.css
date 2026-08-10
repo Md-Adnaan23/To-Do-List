@@ -33,3 +33,14 @@ body {
   justify-content: center;
 }
 
+/* ===== Editor window ===== */
+.editor {
+  width: 100%;
+  max-width: 640px;
+  margin: 48px auto;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.65);
+}
