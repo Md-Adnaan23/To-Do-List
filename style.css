@@ -95,3 +95,37 @@ body {
   font-weight: 700;
 }
 
+.task-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font: inherit;
+  padding: 6px 2px;
+  caret-color: var(--accent-amber);
+}
+
+.task-input::placeholder { color: var(--text-dim); }
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-blue);
+  color: #0f1419;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.add-btn:hover { background: #7cc4f5; }
+.add-btn:active { transform: scale(0.97); }
+.add-btn .key { font-size: 14px; }
