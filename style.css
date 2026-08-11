@@ -129,3 +129,35 @@ body {
 .add-btn:hover { background: #7cc4f5; }
 .add-btn:active { transform: scale(0.97); }
 .add-btn .key { font-size: 14px; }
+/* ===== Task list ("code") ===== */
+.code-lines {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  counter-reset: line;
+}
+
+.code-lines li {
+  counter-increment: line;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 16px 9px 6px;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.code-lines li:hover {
+  background: var(--bg-line-hover);
+  border-left-color: var(--accent-blue);
+}
+
+.code-lines li::before {
+  content: counter(line, decimal-leading-zero);
+  flex: 0 0 26px;
+  text-align: right;
+  color: var(--text-dim);
+  font-size: 12.5px;
+  user-select: none;
+}
