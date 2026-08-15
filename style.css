@@ -259,3 +259,36 @@ li.checked .task-text::before {
   color: var(--text-dim);
 }
 
+
+
+
+/* ===== Accessibility ===== */
+.mark:focus-visible,
+.close:focus-visible,
+.add-btn:focus-visible,
+.task-input:focus-visible {
+  outline: 2px solid var(--accent-amber);
+  outline-offset: 2px;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  body { padding: 8px; }
+  .editor { margin: 16px auto; }
+  .input-row { flex-wrap: wrap; }
+  .task-input { flex-basis: 100%; order: 1; }
+  .add-btn { flex: 1; justify-content: center; order: 2; }
+  .code-lines li::before { flex-basis: 18px; font-size: 11px; }
+  .statusbar { font-size: 11px; }
+}
