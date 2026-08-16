@@ -34,3 +34,45 @@ function loadTasks() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded));
   return seeded;
 }
+
+
+
+/* ===== Render ===== */
+
+function render() {
+  myUL.innerHTML = '';
+
+  if (tasks.length === 0) {
+    const li = document.createElement('li');
+    li.className = 'empty-state';
+    li.textContent = '// your day is wide open — add a task above';
+    myUL.appendChild(li);
+  } else {
+    tasks.forEach((task, index) => {
+      const li = document.createElement('li');
+      li.dataset.index = String(index);
+      if (task.checked) li.classList.add('checked');
+
+      const mark = document.createElement('span');
+      mark.className = 'mark';
+      mark.setAttribute('role', 'checkbox');
+      mark.setAttribute('tabindex', '0');
+      mark.setAttribute('aria-checked', task.checked ? 'true' : 'false');
+
+      const text = document.createElement('span');
+      text.className = 'task-text';
+      text.textContent = task.text;
+
+      const close = document.createElement('button');
+      close.type = 'button';
+      close.className = 'close';
+      close.setAttribute('aria-label', `Delete "${task.text}"`);
+      close.innerHTML = '&times;';
+
+      li.append(mark, text, close);
+      myUL.appendChild(li);
+    });
+  }
+
+  updateStatus();
+}
