@@ -76,3 +76,26 @@ function render() {
 
   updateStatus();
 }
+function updateStatus() {
+  const total = tasks.length;
+  const done = tasks.filter(t => t.checked).length;
+  statusEl.textContent = `${total} task${total === 1 ? '' : 's'} · ${done} done`;
+}
+
+/* ===== Actions ===== */
+
+function addTask() {
+  const value = input.value.trim();
+
+  if (!value) {
+    flashError();
+    return;
+  }
+
+  tasks.push({ text: value, checked: false });
+  input.value = '';
+  saveTasks();
+  render();
+  input.focus();
+}
+
