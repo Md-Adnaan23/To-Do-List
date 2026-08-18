@@ -109,3 +109,11 @@ function deleteTask(index) {
   saveTasks();
   render();
 }
+
+function flashError() {
+  inputRow.classList.remove('error');
+  void inputRow.offsetWidth; // restart the animation if triggered twice in a row
+  inputRow.classList.add('error');
+  setTimeout(() => inputRow.classList.remove('error'), 300);
+  input.focus();
+}
