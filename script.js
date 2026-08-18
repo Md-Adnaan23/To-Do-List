@@ -98,4 +98,9 @@ function addTask() {
   render();
   input.focus();
 }
+function toggleTask(index) {
+  tasks[index].checked = !tasks[index].checked;
+  saveTasks();
+  render();
+}
 
