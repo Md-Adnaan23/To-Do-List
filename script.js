@@ -104,3 +104,8 @@ function toggleTask(index) {
   render();
 }
 
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  saveTasks();
+  render();
+}
