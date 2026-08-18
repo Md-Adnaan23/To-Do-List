@@ -117,3 +117,36 @@ function flashError() {
   setTimeout(() => inputRow.classList.remove('error'), 300);
   input.focus();
 }
+/* ===== Events ===== */
+
+addBtn.addEventListener('click', addTask);
+
+input.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') addTask();
+});
+
+myUL.addEventListener('click', (event) => {
+  const li = event.target.closest('li');
+  if (!li || li.classList.contains('empty-state')) return;
+
+  const index = Number(li.dataset.index);
+
+  if (event.target.closest('.close')) {
+    deleteTask(index);
+    return;
+  }
+
+  toggleTask(index);
+});
+
+myUL.addEventListener('keydown', (event) => {
+  if (!event.target.classList.contains('mark')) return;
+  if (event.key !== 'Enter' && event.key !== ' ') return;
+
+  event.preventDefault();
+  const li = event.target.closest('li');
+  toggleTask(Number(li.dataset.index));
+});
+
+/* ===== Init ===== */
+render();
