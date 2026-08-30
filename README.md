@@ -1,6 +1,6 @@
-# 📝 Basic To-Do List Web App
+# 📝 To-Do List Web App
 
-A simple and responsive **To-Do List web application** that helps users manage daily tasks easily. Users can add tasks, mark them as completed, and remove tasks when they are done.
+A simple and responsive **To-Do List web application** for managing daily tasks. Users can add tasks, mark them as completed, and delete tasks when they are no longer needed.
 
 ## 🚀 Features
 
