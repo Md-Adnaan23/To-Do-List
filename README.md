@@ -8,7 +8,7 @@ A simple, responsive, and developer-inspired **To-Do List web application** for 
 
 ## 📸 Preview
 
-![To-Do List Preview](./Screenshot 2026-08-30 224117.png)
+![To-Do List Preview](https://github.com/Md-Adnaan23/To-Do-List/blob/main/Screenshot/Screenshot%202026-08-30%20224117.png)
 
 ## 🚀 Features
 
