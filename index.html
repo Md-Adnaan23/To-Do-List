@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Daily Routine</title>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  >
-
+  <title>daily-routine.js — To-Do</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-</head>
 
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f1419">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="icon-192.png" type="image/png">
+</head>
 <body>
 
-  <main class="editor">
+  <main class="editor" aria-label="Daily routine to-do list">
 
     <!-- Titlebar -->
     <div class="titlebar">
@@ -25,14 +26,12 @@
         <span class="dot dot-amber"></span>
         <span class="dot dot-green"></span>
       </div>
-
       <span class="tab">daily-routine.js</span>
     </div>
 
     <!-- Prompt / input row -->
     <div class="input-row">
       <span class="prompt" aria-hidden="true">&gt;</span>
-
       <input
         type="text"
         id="myInput"
@@ -41,7 +40,6 @@
         aria-label="New task"
         autocomplete="off"
       >
-
       <button type="button" id="addBtn" class="add-btn">
         Add <span class="key">&#9166;</span>
       </button>
@@ -49,95 +47,14 @@
 
     <!-- Task list -->
     <ul id="myUL" class="code-lines">
-
-      <li>
-        <span
-          class="mark"
-          role="checkbox"
-          aria-checked="false"
-          tabindex="0"
-        ></span>
-
-        <span class="task-text">Read Quran</span>
-      </li>
-
-      <li class="checked">
-        <span
-          class="mark"
-          role="checkbox"
-          aria-checked="true"
-          tabindex="0"
-        ></span>
-
-        <span class="task-text">Coding</span>
-      </li>
-
-      <li>
-        <span
-          class="mark"
-          role="checkbox"
-          aria-checked="false"
-          tabindex="0"
-        ></span>
-
-        <span class="task-text">Read PDFs</span>
-      </li>
-
-      <li>
-        <span
-          class="mark"
-          role="checkbox"
-          aria-checked="false"
-          tabindex="0"
-        ></span>
-
-        <span class="task-text">Breakfast</span>
-      </li>
-
-      <li>
-        <span
-          class="mark"
-          role="checkbox"
-          aria-checked="false"
-          tabindex="0"
-        ></span>
-
-        <span class="task-text">Learn</span>
-      </li>
-
-      <li>
-        <span
-          class="mark"
-          role="checkbox"
-          aria-checked="false"
-          tabindex="0"
-        ></span>
-
-        <span class="task-text">Take nap</span>
-      </li>
-
-      <li>
-        <span
-          class="mark"
-          role="checkbox"
-          aria-checked="false"
-          tabindex="0"
-        ></span>
-
-        <span class="task-text">Web Dev</span>
-      </li>
-
-      <li>
-        <span
-          class="mark"
-          role="checkbox"
-          aria-checked="false"
-          tabindex="0"
-        ></span>
-
-        <span class="task-text">lunch</span>
-      </li>
-
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">Read Quran</span></li>
+      <li class="checked"><span class="mark" role="checkbox" aria-checked="true" tabindex="0"></span><span class="task-text">Coding</span></li>
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">Read PDFs</span></li>
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">Breakfast</span></li>
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">Learn</span></li>
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">Take nap</span></li>
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">Web Dev</span></li>
+      <li><span class="mark" role="checkbox" aria-checked="false" tabindex="0"></span><span class="task-text">lunch</span></li>
     </ul>
 
     <!-- Status bar -->

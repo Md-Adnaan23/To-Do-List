@@ -1,0 +1,323 @@
+/* ===== Design tokens ===== */
+:root {
+  --bg-page:    #0a0d12;
+  --bg:         #0f1419;
+  --bg-panel:   #141a21;
+  --bg-line-hover: #171f28;
+  --border:     #232b35;
+
+  --text:       #d4d7dc;
+  --text-dim:   #5b6472;
+
+  --accent-blue:  #5fb3f0;
+  --accent-amber: #e8a33d;
+  --accent-green: #6fcf97;
+  --accent-red:   #e2555a;
+
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 16px;
+  background: var(--bg-page);
+  color: var(--text);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 15px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* ===== Editor window ===== */
+.editor {
+  width: 100%;
+  max-width: 640px;
+  margin: 48px auto;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.65);
+}
+
+/* Titlebar */
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+}
+
+.dots { display: flex; gap: 8px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot-red   { background: var(--accent-red); }
+.dot-amber { background: var(--accent-amber); }
+.dot-green { background: var(--accent-green); }
+
+.tab {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  padding: 4px 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+}
+
+/* Prompt / input row */
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.2s;
+}
+
+.input-row:focus-within {
+  box-shadow: inset 0 0 0 1px var(--accent-blue);
+}
+
+.input-row.error {
+  animation: shake 0.3s;
+  box-shadow: inset 0 0 0 1px var(--accent-red);
+}
+
+.prompt {
+  color: var(--accent-amber);
+  font-weight: 700;
+}
+
+.task-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font: inherit;
+  padding: 6px 2px;
+  caret-color: var(--accent-amber);
+}
+
+.task-input::placeholder { color: var(--text-dim); }
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-blue);
+  color: #0f1419;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.add-btn:hover { background: #7cc4f5; }
+.add-btn:active { transform: scale(0.97); }
+.add-btn .key { font-size: 14px; }
+
+/* ===== Task list ("code") ===== */
+.code-lines {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  counter-reset: line;
+}
+
+.code-lines li {
+  counter-increment: line;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 16px 9px 6px;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.code-lines li:hover,
+.code-lines li.editing {
+  background: var(--bg-line-hover);
+  border-left-color: var(--accent-blue);
+}
+
+.code-lines li::before {
+  content: counter(line, decimal-leading-zero);
+  flex: 0 0 26px;
+  text-align: right;
+  color: var(--text-dim);
+  font-size: 12.5px;
+  user-select: none;
+}
+
+/* Checkbox "mark" */
+.mark {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--accent-blue);
+  border-radius: 4px;
+  position: relative;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.mark::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  line-height: 1;
+  color: #0f1419;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+li.checked .mark {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+}
+li.checked .mark::after { opacity: 1; }
+
+/* Task text */
+.task-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  transition: color 0.15s, opacity 0.15s;
+}
+
+li.checked .task-text {
+  color: var(--accent-green);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+li.checked .task-text::before {
+  content: "// ";
+  color: var(--text-dim);
+}
+
+/* Edit + delete buttons (added by script.js) */
+.edit-btn,
+.close {
+  flex: 0 0 auto;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  line-height: 1;
+  padding: 2px 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.edit-btn {
+  margin-left: auto;
+  font-size: 14px;
+}
+
+.close { font-size: 18px; }
+
+.code-lines li:hover .edit-btn,
+.code-lines li:hover .close,
+.edit-btn:focus-visible,
+.close:focus-visible {
+  opacity: 1;
+}
+
+.edit-btn:hover { color: var(--accent-blue); }
+.close:hover { color: var(--accent-red); }
+
+/* Touch devices have no hover state — keep buttons always visible there */
+@media (hover: none) {
+  .edit-btn,
+  .close {
+    opacity: 1;
+  }
+}
+
+/* Inline edit input — replaces .task-text while editing */
+.edit-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 0;
+}
+
+/* Empty state */
+.code-lines li.empty-state {
+  counter-increment: line 0;
+  cursor: default;
+  color: var(--text-dim);
+  font-style: italic;
+}
+.code-lines li.empty-state:hover {
+  background: transparent;
+  border-left-color: transparent;
+}
+.code-lines li.empty-state::before { content: ""; }
+
+/* ===== Status bar ===== */
+.statusbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* ===== Accessibility ===== */
+.mark:focus-visible,
+.close:focus-visible,
+.add-btn:focus-visible,
+.task-input:focus-visible {
+  outline: 2px solid var(--accent-amber);
+  outline-offset: 2px;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  body { padding: 8px; }
+  .editor { margin: 16px auto; }
+  .input-row { flex-wrap: wrap; }
+  .task-input { flex-basis: 100%; order: 1; }
+  .add-btn { flex: 1; justify-content: center; order: 2; }
+  .code-lines li::before { flex-basis: 18px; font-size: 11px; }
+  .statusbar { font-size: 11px; }
+}
