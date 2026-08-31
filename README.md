@@ -8,7 +8,7 @@ A simple, responsive, and developer-inspired **To-Do List web application** for 
 
 ## 📸 Preview
 
-![To-Do List Preview](./Screenshot/todo-list-preview.png)
+![To-Do List Preview](Screenshot/Screenshot 2026-08-30 224117.png)
 
 ## 🚀 Features
 
