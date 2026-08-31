@@ -44,6 +44,7 @@ body {
   overflow: hidden;
   box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.65);
 }
+
 /* Titlebar */
 .titlebar {
   display: flex;
@@ -129,6 +130,7 @@ body {
 .add-btn:hover { background: #7cc4f5; }
 .add-btn:active { transform: scale(0.97); }
 .add-btn .key { font-size: 14px; }
+
 /* ===== Task list ("code") ===== */
 .code-lines {
   list-style: none;
@@ -148,7 +150,9 @@ body {
   transition: background 0.15s, border-color 0.15s;
 }
 
-.code-lines li:hover {
+
+.code-lines li:hover,
+.code-lines li.editing {
   background: var(--bg-line-hover);
   border-left-color: var(--accent-blue);
 }
@@ -160,4 +164,162 @@ body {
   color: var(--text-dim);
   font-size: 12.5px;
   user-select: none;
+}
+
+/* Checkbox "mark" */
+.mark {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--accent-blue);
+  border-radius: 4px;
+  position: relative;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.mark::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  line-height: 1;
+  color: #0f1419;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+li.checked .mark {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+}
+li.checked .mark::after { opacity: 1; }
+
+/* Task text */
+.task-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  transition: color 0.15s, opacity 0.15s;
+}
+
+li.checked .task-text {
+  color: var(--accent-green);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+li.checked .task-text::before {
+  content: "// ";
+  color: var(--text-dim);
+}
+
+/* Edit + delete buttons (added by script.js) */
+.edit-btn,
+.close {
+  flex: 0 0 auto;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  line-height: 1;
+  padding: 2px 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.edit-btn {
+  margin-left: auto;
+  font-size: 14px;
+}
+
+.close { font-size: 18px; }
+
+.code-lines li:hover .edit-btn,
+.code-lines li:hover .close,
+.edit-btn:focus-visible,
+.close:focus-visible {
+  opacity: 1;
+}
+
+.edit-btn:hover { color: var(--accent-blue); }
+.close:hover { color: var(--accent-red); }
+
+/* Touch devices have no hover state — keep buttons always visible there */
+@media (hover: none) {
+  .edit-btn,
+  .close {
+    opacity: 1;
+  }
+}
+
+/* Inline edit input — replaces .task-text while editing */
+.edit-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 0;
+}
+
+/* Empty state */
+.code-lines li.empty-state {
+  counter-increment: line 0;
+  cursor: default;
+  color: var(--text-dim);
+  font-style: italic;
+}
+.code-lines li.empty-state:hover {
+  background: transparent;
+  border-left-color: transparent;
+}
+.code-lines li.empty-state::before { content: ""; }
+
+/* ===== Status bar ===== */
+.statusbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* ===== Accessibility ===== */
+.mark:focus-visible,
+.close:focus-visible,
+.add-btn:focus-visible,
+.task-input:focus-visible {
+  outline: 2px solid var(--accent-amber);
+  outline-offset: 2px;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  body { padding: 8px; }
+  .editor { margin: 16px auto; }
+  .input-row { flex-wrap: wrap; }
+  .task-input { flex-basis: 100%; order: 1; }
+  .add-btn { flex: 1; justify-content: center; order: 2; }
+  .code-lines li::before { flex-basis: 18px; font-size: 11px; }
+  .statusbar { font-size: 11px; }
 }
